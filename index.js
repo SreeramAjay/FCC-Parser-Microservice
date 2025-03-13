@@ -24,11 +24,12 @@ app.get('/api/hello', function (req, res) {
   res.json({ greeting: 'hello API' });
 });
 
-app.get('/api/whoami',(req,res) =>{
-  let yourIP = req.ip;
-  let yourLanguage = req.header("accept-language");
-  let yourSoftware = req.header("user-agent");
-  res.json({ipaddress : yourIP, language : yourLanguage, software : yourSoftware});
+app.get('/api/whoami', (req, res) => {
+  res.json({
+      ipaddress: req.socket.remoteAddress,
+      language: req.headers["accept-language"],
+      software: req.headers["user-agent"]
+  });
 });
 
 // listen for requests :)
