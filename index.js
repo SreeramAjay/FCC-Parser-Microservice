@@ -24,12 +24,14 @@ app.get('/api/hello', function (req, res) {
   res.json({ greeting: 'hello API' });
 });
 
+// API endpoint with whoami parameter 
 app.get('/api/whoami', (req, res) => {
-  res.json({
-      ipaddress: req.socket.remoteAddress,
-      language: req.headers['accept-language'],
-      software: req.headers['user-agent']
-  });
+  // Initialize variable to hold ip address and language and software
+  const ipAddress = req.ip; 
+  const language = req.header[`accept-language`]; 
+  const software = req.header[`user-agent`]; 
+
+  res.json({ipaddress: ipAddress , language: 'language', software: 'software'}); 
 });
 
 // listen for requests :)
